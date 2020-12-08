@@ -1,1 +1,4 @@
 input
+*.o
+advent*
+!advent*.hsp
