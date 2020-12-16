@@ -12,15 +12,15 @@ with open('input', 'r') as f:
 arr = [int(x) for x in data.split(',')]
 
 def solve(index):
-    if index < len(arr):
-        return arr[index]
-    x = arr[-1]
+    if index <= len(arr):
+        return arr[index - 1]
+    current_num = arr[-1]
     seen = {x: i for (i, x) in enumerate(arr[:-1])}
     for pos in range(len(arr), index):
-        v = pos - seen[x] - 1 if x in seen else 0
-        seen[x] = pos - 1
-        x = v
-    return x
+        new_num = pos - seen[current_num] - 1 if current_num in seen else 0
+        seen[current_num] = pos - 1
+        current_num = new_num
+    return current_num
 
 print("Part 1:", solve(2020))
 print("Part 2:", solve(30000000))
